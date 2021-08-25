@@ -26,7 +26,7 @@ class Auth:
 
     def run(self):
         token = "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"
-        array = list(token[3:-20])
+        array = list(token[3:-25])
         sleep(2)
         for chr in array:
             keyboard.press(chr)
