@@ -19,6 +19,8 @@ class Push:
         
         os.system("git push")
 
+        os.system("clear")
+
 class Auth:
     def __init__(self):
         pass
