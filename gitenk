@@ -2,3 +2,17 @@
 
 clear
 python3 main.py
+
+if [ "$1" == "-config" ]
+then
+    python3 main.py
+elif ["$1" == "-change"]
+then
+    python3 main.py
+else
+    echo "access: Authentication not valid."
+fi
+clear
+
+echo "Bye..."
+echo "Thanks for using gitenk."
