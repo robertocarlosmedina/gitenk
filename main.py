@@ -9,11 +9,13 @@ password = ""
 authPass = ""
 
 if (password == authPass and len(sys.argv)>1):
-    path = input("File path: ")
-    commitHeader = input("Commit header: ")
-    commitDescription = input("Commit description: ")
-
-    objectArray = [GitAction(sys.argv[1], path, commitHeader, commitDescription), Auth()]
+    if(sys.argv[1]=="push"):
+        path = input("File path: ")
+        commitHeader = input("Commit header: ")
+        commitDescription = input("Commit description: ")
+        objectArray = [GitAction(sys.argv[1], path, commitHeader, commitDescription), Auth()]
+    else:
+        objectArray = [GitAction(sys.argv[1]), Auth()]
     for obj in objectArray:
         th_task = ThreadOFTask(obj)
         th_task.start()
