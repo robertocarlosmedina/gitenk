@@ -9,15 +9,16 @@ keyboard = Controller()
 password = ""
 authPass = ""
 
-class Push:
+class GitAction:
     def __init__(self):
         pass
 
     def run(self):
         os.system("git add .")
         os.system("git commit -m 'update'")
-        os.system("git push")
-        os.system("clear")
+        s = os.system("git push")
+        print(s)
+        # os.system("clear")
 
 class Auth:
     def __init__(self):
@@ -25,7 +26,7 @@ class Auth:
 
     def run(self):
         token = "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"
-        array = list(token)
+        array = list(token[0:-1])
         sleep(2)
         for chr in array:
             keyboard.press(chr)
@@ -42,12 +43,12 @@ class Auth:
         keyboard.release(Key.enter)
 
 if (password == authPass):
-    array= [Push(), Auth()]
+    array= [GitAction(), Auth()]
 
     for item in array:
         th = ThreadTask(item)
         th.start()
-    os.system("clear")
+    # os.system("clear")
 
 else:
     print("auth: validation error")

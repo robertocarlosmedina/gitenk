@@ -1,17 +1,21 @@
 #!/bin/bash
 
 clear
-python3 main.py
 
-if [ "$1" == "-config" ]
-then
-    python3 main.py
-elif ["$1" == "-change"]
-then
-    python3 main.py
-else
-    echo "access: Authentication not valid."
-fi
+python3 main.py $1
+# if [ "$1" == "-config" ]
+# then
+#     python3 main.py
+# elif ["$1" == "-push"]
+# then
+#     python3 main.py push
+# elif ["$1" == "-pull"]
+# then
+#     python3 main.py pull
+# else
+#     echo "access: Authentication not valid."
+# fi
+
 clear
 
 echo "Bye..."
