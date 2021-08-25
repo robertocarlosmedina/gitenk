@@ -3,7 +3,7 @@ from pynput import keyboard
 from pynput.keyboard import Key, Controller
 from authThreadHandler import ThreadTask
 
-keyboard = Controller()
+# keyboard = Controller()
 
 # password = input("Auth: ")
 password = ""
