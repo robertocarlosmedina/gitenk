@@ -1,9 +1,8 @@
 import os
-from pynput import keyboard
 from pynput.keyboard import Key, Controller
 from authThreadHandler import ThreadTask
 
-# keyboard = Controller()
+keyboard = Controller()
 
 # password = input("Auth: ")
 password = ""
@@ -24,7 +23,7 @@ class Auth:
 
     def run(self):
         os.system("echo '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'")
-        keyboard.enter
+        keyboard.press(Key.enter)
 
 if (password == authPass):
     array= [Push(), Auth()]
