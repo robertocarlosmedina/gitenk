@@ -1,5 +1,6 @@
 import os
-from src.authThreadHandler import ThreadTask
+import sys
+from src.taskHandler import ThreadOFTask
 from src.action import GitAction
 from src.authetication import Auth
 
@@ -7,12 +8,15 @@ from src.authetication import Auth
 password = ""
 authPass = ""
 
-if (password == authPass):
-    array= [GitAction(), Auth()]
+if (password == authPass and len(sys.argv)>1):
+    path = input("File path: ")
+    commitHeader = input("Commit header: ")
+    commitDescription = input("Commit description: ")
 
-    for item in array:
-        th = ThreadTask(item)
-        th.start()
+    objectArray = [GitAction(sys.argv[1], path, commitHeader, commitDescription), Auth()]
+    for obj in objectArray:
+        th_task = ThreadOFTask(obj)
+        th_task.start()
     # os.system("clear")
 
 else:

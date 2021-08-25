@@ -6,6 +6,10 @@ class Auth:
     def __init__(self):
         self.keyboard = Controller()
 
+    def enterKeyPress(self):
+        self.keyboard.press(Key.enter)
+        self.keyboard.release(Key.enter)
+
     def run(self):
         token = "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"
         array = list(token)
@@ -15,12 +19,10 @@ class Auth:
             self.keyboard.press(chr)
             self.keyboard.release(chr)
 
-        self.keyboard.press(Key.enter)
-        self.keyboard.release(Key.enter)
+        self.enterKeyPress()
 
         for chr in token:
             self.keyboard.press(chr)
             self.keyboard.release(chr)
 
-        self.keyboard.press(Key.enter)
-        self.keyboard.release(Key.enter)
+        self.enterKeyPress()
