@@ -16,7 +16,6 @@ class Push:
     def run(self):
         os.system("git add .")
         os.system("git commit -m 'update'")
-        sleep(3)
         os.system("git push")
 
 class Auth:
