@@ -16,8 +16,8 @@ class GitAction:
     def run(self):
         os.system("git add .")
         os.system("git commit -m 'update'")
-        s = os.system("git push")
-        print(s)
+        os.system("git push")
+        # print(s)
         # os.system("clear")
 
 class Auth:
@@ -25,7 +25,7 @@ class Auth:
         pass
 
     def run(self):
-        
+
         token = "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"
         array = list(token[3:-25])
         sleep(2)
