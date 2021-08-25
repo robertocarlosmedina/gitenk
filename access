@@ -1,0 +1,31 @@
+#!/bin/bash
+#!/usr/bin/expect
+
+clear
+python3 gitToken.py
+user_pass="@-rraoc-21-"
+read -p  "Password: " pass
+clear
+if [ "$pass" == "$user_pass" ]
+then
+    echo "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"
+else
+    echo "access: Authentication not valid."
+fi
+read -p  "Write something: " name
+clear
+
+#    {   echo "Start pushing"
+#        sleep 1
+#        expect "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" { send "\r" }
+#        sleep 1
+#        echo ""
+#    }&  
+#    git push
+#    sleep 1
+#    echo -en "\r\n"
+#    sleep 1
+#    echo ""
+   
+#    echo "Token: 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"
+
