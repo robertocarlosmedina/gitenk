@@ -17,6 +17,7 @@ class Push:
         os.system("git add .")
         os.system("git commit -m 'update'")
         os.system("git push")
+        os.system("echo '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'")
 
 class Auth:
     def __init__(self):
