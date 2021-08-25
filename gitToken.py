@@ -24,7 +24,7 @@ class Auth:
         pass
 
     def run(self):
-        os.system("echo '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'")
+        # os.system("echo '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'")
         keyboard.press(Key.enter)
 
 if (password == authPass):
