@@ -47,6 +47,7 @@ if (password == authPass):
     for item in array:
         th = ThreadTask(item)
         th.start()
+    os.system("clear")
 
 else:
     print("auth: validation error")
