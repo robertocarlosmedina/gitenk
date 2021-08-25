@@ -11,7 +11,7 @@ class Auth:
         self.keyboard.release(Key.enter)
 
     def run(self):
-        token = "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"
+        token = "ghp_FoaRkSJnDD5ngoFymEtczNDscPjInh41skpZN1"
         array = list(token)
 
         sleep(3)
