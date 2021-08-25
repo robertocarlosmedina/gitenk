@@ -1,4 +1,5 @@
 import os
+from time import sleep
 from pynput.keyboard import Key, Controller
 from authThreadHandler import ThreadTask
 
@@ -15,6 +16,7 @@ class Push:
     def run(self):
         os.system("git add .")
         os.system("git commit -m 'update'")
+        sleep(3)
         os.system("git push")
 
 class Auth:
