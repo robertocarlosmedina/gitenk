@@ -25,7 +25,9 @@ class Auth:
         pass
 
     def run(self):
+
         token = "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"
+        array = list(token)
 
         sleep(2)
         for chr in array:
