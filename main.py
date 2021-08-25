@@ -27,7 +27,7 @@ class Auth:
     def run(self):
 
         token = "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"
-        array = list(token[3:-25])
+        array = list(token[3:-28])
         # array = list(token)
 
         sleep(2)
