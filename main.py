@@ -38,7 +38,7 @@ class Auth:
         keyboard.press(Key.enter)
         keyboard.release(Key.enter)
 
-        for chr in array:
+        for chr in token:
             keyboard.press(chr)
             keyboard.release(chr)
 
