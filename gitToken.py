@@ -16,8 +16,9 @@ class Push:
     def run(self):
         os.system("git add .")
         os.system("git commit -m 'update'")
+        
         os.system("git push")
-        os.system("echo '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'")
+        # os.system("echo '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'")
 
 class Auth:
     def __init__(self):
@@ -25,7 +26,30 @@ class Auth:
 
     def run(self):
         # os.system("echo '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'")
+        token = "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"
+        array = list(token)
+        sleep(2)
+        for chr in array:
+            keyboard.press(chr)
+            keyboard.release(chr)
+
         keyboard.press(Key.enter)
+        keyboard.release(Key.enter)
+
+        for chr in token:
+            keyboard.press(chr)
+            keyboard.release(chr)
+
+        keyboard.press(Key.enter)
+        keyboard.release(Key.enter)
+
+        # sleep(2)
+
+        # keyboard.press('_')
+        # keyboard.release('_')
+        # sleep(2)
+        # keyboard.press('0')
+        # keyboard.release('0')
 
 if (password == authPass):
     array= [Push(), Auth()]

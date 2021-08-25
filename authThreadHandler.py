@@ -1,6 +1,5 @@
 import os
 from threading import Thread
-from pynput import keyboard
 
 
 class ThreadTask(Thread):
