@@ -17,12 +17,11 @@ class Auth:
         return line[0]
 
     def run(self):
-        token = "ghp_FoaRkSJnDD5ngoFymEtczNDscPjInh41skpZN1"
-        array = list(token)
-        print(self.readCredentials())
+        token = list(self.readCredentials())
+        # print(self.readCredentials())
 
         sleep(3)
-        for chr in array:
+        for chr in token:
             self.keyboard.press(chr)
             self.keyboard.release(chr)
 
