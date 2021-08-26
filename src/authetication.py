@@ -17,7 +17,7 @@ class Auth:
         return line[0]
 
     def run(self):
-        token = "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"
+        token = "ghp_FoaRkSJnDD5ngoFymEtczNDscPjInh41skpZN1"
         array = list(token)
         print(self.readCredentials())
 
