@@ -2,21 +2,25 @@
 
 clear
 
-python3 main.py $1
-# if [ "$1" == "-config" ]
-# then
-#     python3 main.py
-# elif ["$1" == "-push"]
-# then
-#     python3 main.py push
-# elif ["$1" == "-pull"]
-# then
-#     python3 main.py pull
-# else
-#     echo "access: Authentication not valid."
-# fi
+if [ "$1" == "help" ]
+then
+    echo "   Gitenk cmd can be use adding this words:"
+    echo "        * push - to push to the repo."
+    echo "        * pull - to get syncronized to the repo."
+    echo "        * config - to set up the credentials file."
+    echo "        * help - to see this tests."
+    echo "   Example: "
+    echo "      '$ gitenk push'"
+fi
+if [ "$1" == "config" ] || [ "$1" == "push" ]  || [ "$1" == "pull" ]
+then
+    python3 gitenk.py $1
 
-clear
+fi
 
-echo "Bye..."
-echo "Thanks for using gitenk."
+
+if [ -z "$1" ]
+then
+    echo "gitenk: incomplete command."
+    echo "Use 'gitenk help' to get help."
+fi
