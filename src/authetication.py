@@ -13,7 +13,6 @@ class Auth:
     def readCredentials(self):
         file_credentials = open("./src/credentials.txt", "r")
         line = file_credentials.readlines()
-        
         return line[0]
 
     def run(self):
@@ -24,11 +23,9 @@ class Auth:
         for chr in token:
             self.keyboard.press(chr)
             self.keyboard.release(chr)
-
         self.enterKeyPress()
 
         for chr in token:
             self.keyboard.press(chr)
             self.keyboard.release(chr)
-
         self.enterKeyPress()

@@ -4,11 +4,8 @@ from src.taskHandler import ThreadOFTask
 from src.action import GitAction
 from src.authetication import Auth
 
-# password = input("Auth: ")
-password = ""
-authPass = ""
 
-if (password == authPass and len(sys.argv)>1):
+if (len(sys.argv)>1):
     if(sys.argv[1]=="push"):
         path = input("File path: ")
         commitHeader = input("Commit header: ")
@@ -22,4 +19,4 @@ if (password == authPass and len(sys.argv)>1):
     # os.system("clear")
 
 else:
-    print("auth: validation error")
+    print("Invalid command")
