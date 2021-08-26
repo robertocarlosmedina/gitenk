@@ -11,7 +11,7 @@ class Auth:
         self.keyboard.release(Key.enter)
     
     def readCredentials(self):
-        file_credentials = open("credentials.txt" "r")
+        file_credentials = open("credentials.txt", "r")
         line = file_credentials.readlines()
         
         return line[0]
