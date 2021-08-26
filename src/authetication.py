@@ -9,10 +9,17 @@ class Auth:
     def enterKeyPress(self):
         self.keyboard.press(Key.enter)
         self.keyboard.release(Key.enter)
+    
+    def readCredentials(self):
+        file_credentials = open("credentials.txt" "r")
+        line = file_credentials.readlines()
+        
+        return line[0]
 
     def run(self):
         token = "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"
         array = list(token)
+        print(self.readCredentials())
 
         sleep(3)
         for chr in array:
