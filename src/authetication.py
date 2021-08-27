@@ -13,9 +13,10 @@ class Auth:
     def readCredentials(self):
         file_credentials = open("./src/credentials.txt", "r")
         line = file_credentials.readlines()
+        # file_credentials.close()
         return line[0]
 
-    def run(self):
+    def getUseCredentials(self):
         token = list(self.readCredentials())
         # print(self.readCredentials())
 
@@ -29,3 +30,12 @@ class Auth:
             self.keyboard.press(chr)
             self.keyboard.release(chr)
         self.enterKeyPress()
+
+    def showCredentials(self):
+        print(f"Github token: {self.readCredentials()}")
+
+    def changeCedentials(self, newToken):
+        file_credentials = open("./src/credentials.txt", "w")
+        file_credentials.write(newToken)
+        file_credentials.close()
+

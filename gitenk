@@ -4,73 +4,9 @@ clear
 
 if [ "$1" == "help" ]
 then
-    echo "GITENK(0.1)                                            Games Manual                                           LOLCAT()
-
-NAME
-       lolcat - rainbow coloring for text
-
-SYNOPSIS
-       lolcat [options] [files] ...
-
-DESCRIPTION
-       This manual page documents briefly the lolcat command.
-
-       lolcat is a program that concatenates files, or standard input, to standard output (like the generic cat), and
-       adds rainbow coloring to it.
-
-OPTIONS
-       -p f, --spread=f
-              Inclination of the rainbow stripes (character widths per line hight; high values  (>1000)  give  almost
-              horizonal stripes, low values (0.1) almost vertical ones; default: 3.0).
-
-       -F f, --freq=f
-              Frequency of the rainbow (low values around 0.0001 give almost monochromous screens; default: 0.1).
-
-       -S i, --seed=i
-              Initial value for the random number generator; 0 means automatic (default: 0).
-
-       -a, --animate
-              Fade every line through an animation before printing the next one.
-
-       -d i, --duration=i
-              Duration of the animation (number of steps before showing next line; default: 12)
-
-       -s i, --speed=i
-              Speed of the animation (frame rate, ie. number of steps per second; default: 20)
-
-       -f, --force
-              Force color even when stdout is not a tty
-
-       -v, --version
-              Show version of lolcat.
-
-       -h, --help
-              Show summary of options.
-
-EXAMPLES
-Typical combinations of lolcat include other programs that generate text:
-
-       Large colorful words can be written like this:
-
-              echo 'KTHXBAI' | toilet | lolcat
-
-       Cows are popular, come in all colors, and tell random epigrams:
-
-              fortune | cowsay | lolcat -a
-
-SEE ALSO
-       cat(1), toilet(1), fortune(6), cowsay(6)
-
-AUTHOR
-       lolcat was written by Moe <moe@busyloop.net>.
-
-       This manual page was written by chrysn <chrysn@fsfe.org>, for the Debian project (and may be used by others).
-
-                                                  February 21, 2013                                         LOLCAT(6)
-"
-
+    echo "CMD:"
 fi
-if [ "$1" == "config" ] || [ "$1" == "push" ]  || [ "$1" == "pull" ]
+if [ "$1" == "-c" ] || [ "$1" == "-ph" ]  || [ "$1" == "-pl" ]
 then
     python3 gitenk.py $1
     sleep 2
@@ -79,11 +15,17 @@ fi
 
 if [ -z "$1" ]
 then
+    echo "Dependencies installation:"
+    echo ""
+    apt install figlet
+    pip3 install pynput
+    apt install lolcat
+    clear
     figlet -f slant -k -c  gitenk | lolcat -a -d 1
     figlet -f term -k -c  Roberto Carlos Medina | lolcat -a -d 1
     figlet -f term -k -c  robertocarlosmedina.dev@gmail.com | lolcat
     figlet -f circle -k -c  2021 | lolcat
-    echo "Use 'gitenk help' to get help."
+    figlet -f term -c Use 'gitenk help' to get help.
 fi
 
 # dependencies

@@ -1,22 +1,32 @@
 import os
+from src.authetication import Auth
 
 class GitAction:
-    def __init__(self, action, path=None, commitHeader=None, commitMessage=None):
-        self.action = action
-        self.filePath = path
-        self.commitHeader = commitHeader
-        self.commitMessage = commitMessage
+    def __init__(self):
+        self.auth = Auth()
+    
+    def authentication(self):
+        self.auth.getUseCredentials()
 
-    def run(self, ):
-        if (self.action == "push"):
-            os.system(f"git add {self.filePath}")
-            if (self.commitHeader != None):
-                os.system(f"git commit -m '{self.commitHeader}' -m '{self.commitMessage}'")
-            else:
-                os.system(f"git commit -m '{self.commitMessage}'")
-            os.system("git push")
-        
-        elif(self.action == "pull"):
-            os.system("git pull")
+    def push(self):        
+        path = input("File path: ")
+        commitHeader = input("Commit header: ")
+        commitMessage = input("Commit description: ")
+        os.system(f"git add {path}")
+        if (commitHeader != None):
+            os.system(f"git commit -m '{commitHeader}' -m '{commitMessage}'")
+        else:
+            os.system(f"git commit -m '{commitMessage}'")
+        os.system("git push")
+
+    def pull(self):
+        os.system("git pull")
+    
+    def showCredentials(self):
+        self.auth.showCredentials()
+    
+    def changeCredentials(self):
+        newToken = input("New Token: ")
+        self.auth.changeCedentials(newToken)
 
         # os.system("clear")

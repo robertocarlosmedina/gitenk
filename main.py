@@ -2,21 +2,21 @@ import os
 import sys
 from src.taskHandler import ThreadOFTask
 from src.action import GitAction
-from src.authetication import Auth
 
+
+
+gitAction = GitAction()
+cmds_dict = {"-ph":[gitAction.push], "-pl":[gitAction.pull, gitAction.authentication], "-sw":[gitAction.showCredentials],\
+     "-ch":[gitAction.changeCredentials]}
 
 if (len(sys.argv)>1):
-    if(sys.argv[1]=="push"):
-        path = input("File path: ")
-        commitHeader = input("Commit header: ")
-        commitDescription = input("Commit description: ")
-        objectArray = [GitAction(sys.argv[1], path, commitHeader, commitDescription), Auth()]
-    else:
-        objectArray = [GitAction(sys.argv[1]), Auth()]
-    for obj in objectArray:
-        th_task = ThreadOFTask(obj)
-        th_task.start()
-    # os.system("clear")
-
+    for cmd, actions in cmds_dict.items():
+        if(sys.argv[1]==cmd):
+            if(len(actions)>1):
+                for act in actions:
+                    th_task = ThreadOFTask(act)
+                    th_task.start()
+            else:
+                actions[0]()
 else:
     print("Invalid command")

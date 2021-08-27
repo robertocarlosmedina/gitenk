@@ -3,11 +3,11 @@ from threading import Thread
 
 
 class ThreadOFTask(Thread):
-    def __init__(self, obj):
+    def __init__(self, function_sent):
         Thread.__init__(self)
-        self.obj = obj
+        self.function_toExec = function_sent
     
     def run(self):
-        self.obj.run()
+        self.function_toExec()
         
         
