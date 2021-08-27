@@ -6,8 +6,8 @@ from src.action import GitAction
 
 
 gitAction = GitAction()
-cmds_dict = {"-ph":[gitAction.push], "-pl":[gitAction.pull, gitAction.authentication], "-sw":[gitAction.showCredentials],\
-     "-ch":[gitAction.changeCredentials]}
+cmds_dict = {"push":[gitAction.push], "pull":[gitAction.pull, gitAction.authentication], "show":[gitAction.showCredentials],\
+     "change":[gitAction.changeCredentials]}
 
 if (len(sys.argv)>1):
     for cmd, actions in cmds_dict.items():
