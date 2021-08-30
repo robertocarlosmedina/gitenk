@@ -12,6 +12,10 @@ cmds_dict = {"push":[gitAction.push, gitAction.authentication], "pull":[gitActio
 if (len(sys.argv)>1):
     for cmd, actions in cmds_dict.items():
         if(sys.argv[1]==cmd):
+            
+            if (cmd == "push"):
+                gitAction.setUPCommitValues()
+
             if(len(actions)>1):
                 for act in actions:
                     th_task = FunctionThreadTask(act)
