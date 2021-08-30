@@ -11,7 +11,7 @@ class Auth:
         self.keyboard.release(Key.enter)
     
     def readCredentials(self):
-        file_credentials = open("./src/credentials.txt", "r")
+        file_credentials = open("/usr/bin/credentials.txt", "r")
         line = file_credentials.readlines()
         # file_credentials.close()
         return line[0]
@@ -33,7 +33,7 @@ class Auth:
         print(f"Github token: {self.readCredentials()}")
 
     def changeCedentials(self, newToken):
-        file_credentials = open("./src/credentials.txt", "w")
+        file_credentials = open("/usr/bin/credentials.txt", "w")
         file_credentials.write(newToken)
         file_credentials.close()
 
