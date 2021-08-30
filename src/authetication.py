@@ -17,8 +17,8 @@ class Auth:
         return line[0]
 
     def getUseCredentials(self):
-        token = list(self.readCredentials())
-        # print(self.readCredentials())
+        token = self.readCredentials()
+        print(token)
 
         sleep(3)
         for chr in token:
