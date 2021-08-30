@@ -10,18 +10,34 @@ class GitAction:
     
     def setUPCommitValues(self):
         self.path = input("File path: ")
+        if (self.path == ""):
+            self.path == "."
+
         self.commitHeader = input("Commit header: ")
+        if (self.commitHeader == ""):
+            self.commitHeader = None
+
         self.commitMessage = input("Commit description: ")
+        if (self.commitMessage == ""):
+            self.commitMessage = None
+
+        if(self.commitHeader == None and self.commitMessage == None):
+            return False
+
+        return True
     
     def authentication(self):
         self.auth.getUseCredentials()
 
     def push(self):        
         os.system(f"git add {self.path}")
-        if (self.commitHeader != None):
+        if (self.commitHeader != None and self.commitMessage != None):
             os.system(f"git commit -m '{self.commitHeader}' -m '{self.commitMessage}'")
-        else:
+        elif(self.commitHeader == None):
             os.system(f"git commit -m '{self.commitMessage}'")
+        else:
+            os.system(f"git commit -m '{self.commitHeader}'")
+
         os.system("git push")
 
     def pull(self):

@@ -3,24 +3,24 @@ import sys
 from src.taskHandler import FunctionThreadTask
 from src.action import GitAction
 
-
-
 gitAction = GitAction()
 cmds_dict = {"push":[gitAction.push, gitAction.authentication], "pull":[gitAction.pull, gitAction.authentication], "show":[gitAction.showCredentials],\
      "change":[gitAction.changeCredentials]}
 
 if (len(sys.argv)>1):
+    validOperation = True
     for cmd, actions in cmds_dict.items():
         if(sys.argv[1]==cmd):
-            
-            if (cmd == "push"):
-                gitAction.setUPCommitValues()
 
-            if(len(actions)>1):
-                for act in actions:
-                    th_task = FunctionThreadTask(act)
-                    th_task.start()
+            if (cmd == "push"):
+                validOperation = gitAction.setUPCommitValues()
+
+            if validOperation:
+                if(len(actions)>1):
+                    for act in actions:
+                        th_task = FunctionThreadTask(act)
+                        th_task.start()
+                else:
+                    actions[0]()
             else:
-                actions[0]()
-else:
-    print("Invalid command")
+                print("\nAction Error: try it again.")

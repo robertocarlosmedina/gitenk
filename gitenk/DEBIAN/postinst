@@ -1,6 +1,6 @@
 chmod 777 /usr/bin/gitenk
 
-sudo echo "PASTE_YOUR_CREDENTIALS_INTO_HERE" > /usr/bin/credentials.txt
+sudo echo "USE_'gitenk change'_TO_PASTE_YOUR_CREDENTIALS_INTO_HERE" > /usr/bin/credentials.txt
 chmod 777 /usr/bin/credentials.txt
 
 echo "\nDependencies installation:"
