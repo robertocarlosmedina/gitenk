@@ -6,26 +6,25 @@ if [ "$1" == "help" ]
 then
     echo "CMD:"
 fi
-if [ "$1" == "-c" ] || [ "$1" == "-ph" ]  || [ "$1" == "-pl" ]
+if [ "$1" == "config" ] || [ "$1" == "push" ]  || [ "$1" == "pull" ] || [ "$1" == "show" ] || [ "$1" == "change" ]
 then
-    python3 gitenk.py $1
-    sleep 2
-    clear
+    python3 /usr/bin/gitenk.py $1
 fi
+
+if [ "$1" == "push" ]  || [ "$1" == "pull" ]
+    then
+        clear
+    fi
 
 if [ -z "$1" ]
 then
-    echo "Dependencies installation:"
-    echo ""
-    apt install figlet
-    pip3 install pynput
-    apt install lolcat
     clear
     figlet -f slant -k -c  gitenk | lolcat -a -d 1
     figlet -f term -k -c  Roberto Carlos Medina | lolcat -a -d 1
     figlet -f term -k -c  robertocarlosmedina.dev@gmail.com | lolcat
     figlet -f circle -k -c  2021 | lolcat
     figlet -f term -c Use 'gitenk help' to get help.
+    echo ""
 fi
 
 # dependencies
