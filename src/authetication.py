@@ -18,8 +18,6 @@ class Auth:
 
     def getUseCredentials(self):
         token = self.readCredentials()
-        print(token)
-
         sleep(3)
         for chr in token:
             self.keyboard.press(chr)

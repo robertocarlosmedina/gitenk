@@ -1,12 +1,12 @@
 import os
 import sys
-from src.taskHandler import ThreadOFTask
+from src.taskHandler import FunctionThreadTask
 from src.action import GitAction
 
 
 
 gitAction = GitAction()
-cmds_dict = {"push":[gitAction.push], "pull":[gitAction.pull, gitAction.authentication], "show":[gitAction.showCredentials],\
+cmds_dict = {"push":[gitAction.push, gitAction.authentication], "pull":[gitAction.pull, gitAction.authentication], "show":[gitAction.showCredentials],\
      "change":[gitAction.changeCredentials]}
 
 if (len(sys.argv)>1):
@@ -14,7 +14,7 @@ if (len(sys.argv)>1):
         if(sys.argv[1]==cmd):
             if(len(actions)>1):
                 for act in actions:
-                    th_task = ThreadOFTask(act)
+                    th_task = FunctionThreadTask(act)
                     th_task.start()
             else:
                 actions[0]()
