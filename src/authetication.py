@@ -21,7 +21,7 @@ class Auth:
 
     def getUseCredentials(self):
         user_credentials = self.readCredentials()
-        sleep(3)
+        sleep(5)
         for chr in user_credentials[0]:
             self.keyboard.press(chr)
             self.keyboard.release(chr)

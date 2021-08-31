@@ -41,9 +41,7 @@ class GitAction:
         else:
             os.system(f"git commit -m '{self.commitHeader}'")
 
-        output = os.system("git push")
-        print("\n\noutput: ")
-        print(output)
+        os.system("git push")
 
     def pull(self):
         os.system("git pull")

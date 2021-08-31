@@ -4,17 +4,8 @@ clear
 
 if [ "$1" == "help" ]
 then
-    echo "CMD:"
+    echo "In building process."
 fi
-if [ "$1" == "config" ] || [ "$1" == "push" ]  || [ "$1" == "pull" ] || [ "$1" == "show" ] || [ "$1" == "change" ]
-then
-    python3 /usr/bin/gitenk.py $1
-fi
-
-# if [ "$1" == "push" ]  || [ "$1" == "pull" ]
-# then
-#     clear
-# fi
 
 if [ -z "$1" ]
 then
@@ -25,4 +16,11 @@ then
     figlet -f circle -k -c  2021 | lolcat
     figlet -f term -c Use 'gitenk help' to get help.
     echo ""
+else
+    if [ -z "$2" ]
+    then
+        python3 /usr/bin/gitenk.py $1
+    else
+        python3 /usr/bin/gitenk.py $1 $2
+    fi
 fi
