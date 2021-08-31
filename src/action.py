@@ -1,6 +1,9 @@
 import os
+import subprocess
 from src.authetication import Auth
 
+# Each function of this class is considerate a action to be executed 
+# by the package.
 class GitAction:
     def __init__(self):
         self.auth = Auth()
@@ -38,7 +41,9 @@ class GitAction:
         else:
             os.system(f"git commit -m '{self.commitHeader}'")
 
-        os.system("git push")
+        output = os.system("git push")
+        print("\n\noutput: ")
+        print(output)
 
     def pull(self):
         os.system("git pull")
@@ -49,5 +54,3 @@ class GitAction:
     def changeCredentials(self):
         newToken = input("New Token: ")
         self.auth.changeCedentials(newToken)
-
-        # os.system("clear")

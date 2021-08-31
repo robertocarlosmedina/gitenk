@@ -2,6 +2,8 @@ import os
 from time import sleep
 from pynput.keyboard import Key, Controller
 
+# This class has the main goal the care about all the Authentication and 
+# security question, for a better exeperience to the user.
 class Auth:
     def __init__(self):
         self.keyboard = Controller()
