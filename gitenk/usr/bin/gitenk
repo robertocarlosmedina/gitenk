@@ -11,10 +11,10 @@ then
     python3 /usr/bin/gitenk.py $1
 fi
 
-if [ "$1" == "push" ]  || [ "$1" == "pull" ]
-    then
-        clear
-    fi
+# if [ "$1" == "push" ]  || [ "$1" == "pull" ]
+# then
+#     clear
+# fi
 
 if [ -z "$1" ]
 then
@@ -26,8 +26,3 @@ then
     figlet -f term -c Use 'gitenk help' to get help.
     echo ""
 fi
-
-# dependencies
-# sudo apt install figlet toilet
-# pynput
-# sudo apt install lolcat
