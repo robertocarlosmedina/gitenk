@@ -1,5 +1,5 @@
 import os
-import subprocess
+import stdiomask
 from src.authetication import Auth
 
 # Each function of this class is considerate a action to be executed 
@@ -50,7 +50,41 @@ class GitAction:
     
     def showCredentials(self):
         self.auth.showCredentials()
+
+    def getTokenCredentials(self):
+        personal_token = self.auth.getSpecificCredential('token')
+        print(f"Personal Token: {personal_token}")
+        return True
+    
+    def getUserNameCredentials(self):
+        username = self.auth.getSpecificCredential('username')
+        print(f"Username: {username[0:-1]}")
+        return True
     
     def changeCredentials(self):
-        newToken = input("New Token: ")
-        self.auth.changeCedentials(newToken)
+        newUserName = input("New username: ")
+        newToken = stdiomask.getpass(prompt='New Token: ', mask='*')
+        if(newToken!= "" and newUserName != ""):
+            self.auth.changeCedentials(newUserName=newUserName,newToken=newToken)
+            return True
+        return False
+
+    def tokenCredentialChange(self):
+        newToken = stdiomask.getpass(prompt='New Token: ', mask='*')
+        if(newToken != ""):
+            if("\n" in newToken):
+                self.auth.changeCedentials(newToken=newToken.split("\n")[0])
+            else:
+                self.auth.changeCedentials(newToken=newToken)
+            return True
+        return False
+    
+    def usernameCredentialChange(self):
+        newUserName = input("New username: ")
+        if (newUserName != ""):
+            if("\n" in newUserName):
+                self.auth.changeCedentials(newUserName=newUserName.split("\n")[0])
+            else:
+                self.auth.changeCedentials(newUserName=newUserName)
+            return True
+        return False
