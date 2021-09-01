@@ -34,7 +34,7 @@ class GitAction:
 
     def push(self):        
         os.system(f"git add {self.path}")
-        if (self.commitHeader != None and self.commitMessage != None):
+        if (self.commitHeader and self.commitMessage):
             os.system(f"git commit -m '{self.commitHeader}' -m '{self.commitMessage}'")
         elif(self.commitHeader == None):
             os.system(f"git commit -m '{self.commitMessage}'")
@@ -52,6 +52,8 @@ class GitAction:
     def getTokenCredentials(self):
         personal_token = self.auth.getSpecificCredential('token')
         print(f"Personal Token: {personal_token}")
+        input("\nClick enter to close.")
+        os.system("clear")
         return True
     
     def getUserNameCredentials(self):
