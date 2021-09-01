@@ -13,11 +13,9 @@ class GitAction:
         self.forcePush = False
     
     def setForce(self):
-        print("Foce seted")
         self.forcePush = True
     
     def unsetForce(self):
-        print("Unset force")
         self.forcePush = False
     
     def setUPCommitValues(self):
@@ -51,7 +49,6 @@ class GitAction:
         else:
             os.system(f"git commit -m '{self.commitHeader}'")
 
-        print(self.forcePush)
         if(self.forcePush):
             os.system("git push --force")
             print("ok")

@@ -8,7 +8,7 @@ gitAction = GitAction()
 # List of the possible commands for the package and their possible
 # subcommands that can be used
 cmds_dict = {\
-    "push":[[gitAction.unsetForce, gitAction.push, gitAction.authentication],\
+    "push":[[gitAction.push, gitAction.authentication],\
         {\
         "-force":[gitAction.setForce]\
         }],\
@@ -56,7 +56,6 @@ if (len(sys.argv)>1):
                     for subCmd, action in cmd_related_actions[1].items():
                         if(sys.argv[2]==subCmd):
                             action[0]()
-                            sleep(2)
 
                 if(len(cmd_actions)>1):
                     for act in cmd_actions:
