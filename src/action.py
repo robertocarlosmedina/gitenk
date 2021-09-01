@@ -62,6 +62,7 @@ class GitAction:
     
     def showCredentials(self):
         self.auth.showCredentials()
+        return True
 
     def getTokenCredentials(self):
         personal_token = self.auth.getSpecificCredential('token')

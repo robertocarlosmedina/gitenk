@@ -26,6 +26,7 @@ cmds_dict = {\
     
 validOperation = False
 validCommitInputValues = False
+secunSubCommandsUsed = False
 
 if (len(sys.argv)>1):
     for cmd, cmd_related_actions in cmds_dict.items():
@@ -43,6 +44,7 @@ if (len(sys.argv)>1):
                     for subcmd,subCommand_actions in subCommands.items():
                         if(sys.argv[2] == subcmd):
                             validOperation = subCommand_actions[0]()
+                            secunSubCommandsUsed = True
 
             # if it is a valid operation and all the commit values are correctly set up
             # the function related to the command start the execution, and if there is more than
@@ -52,8 +54,11 @@ if (len(sys.argv)>1):
                     for act in cmd_actions:
                         th_task = FunctionThreadTask(act)
                         th_task.start()
-                else:
-                    cmd_actions[0]()
+
                 validOperation = True
+            
+            if(not secunSubCommandsUsed):
+                for action in cmd_actions:
+                    validOperation = action()
 if(not validOperation):
     print("gitenk error: command error.")
