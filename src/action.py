@@ -13,6 +13,7 @@ class GitAction:
         self.forcePush = False
     
     def setForce(self):
+        print("Foce seted")
         self.forcePush = True
     
     def unsetForce(self):

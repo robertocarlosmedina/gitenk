@@ -60,8 +60,10 @@ if (len(sys.argv)>1):
                     for act in cmd_actions:
                         th_task = FunctionThreadTask(act)
                         th_task.start()
+                    validOperation = True
+                else:
+                    validOperation = action[0]()
                 pushAndPullAction = True
-                validOperation = True
             
             if(not secunSubCommandsUsed and not pushAndPullAction):
                 for action in cmd_actions:
