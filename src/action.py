@@ -53,8 +53,7 @@ class GitAction:
             os.system("git push --force")
             print("ok")
         else:
-            os.system("git push")
-            print("ok1")        
+            os.system("git push")       
         return True
 
     def pull(self):
