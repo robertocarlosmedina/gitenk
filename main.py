@@ -8,8 +8,8 @@ gitAction = GitAction()
 # subcommands that can be used
 cmds_dict = {\
     "push":[[gitAction.unsetForce, gitAction.push, gitAction.authentication],\
-        {
-        "-force":[gitAction.setForce, gitAction.push, gitAction.authentication]
+        {\
+        "-force":[gitAction.setForce]\
         }],\
     "pull":[[gitAction.pull, gitAction.authentication]],\
     "show":[[gitAction.showCredentials],\
@@ -51,6 +51,11 @@ if (len(sys.argv)>1):
             # the function related to the command start the execution, and if there is more than
             # one function related to the command, eacth of them are executed in a thread.
             if ((validCommitInputValues and (cmd == "push"))or(cmd == "pull")):
+                if(len(cmd_related_actions)==2):
+                    for subCmd, action in cmd_related_actions[1].items():
+                        if(sys.argv[2]==subCmd):
+                            action[0]()
+
                 if(len(cmd_actions)>1):
                     for act in cmd_actions:
                         th_task = FunctionThreadTask(act)
