@@ -51,7 +51,6 @@ class GitAction:
 
         if(self.forcePush):
             os.system("git push --force")
-            print("ok")
         else:
             os.system("git push")       
         return True
