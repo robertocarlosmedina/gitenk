@@ -51,11 +51,12 @@ if (len(sys.argv)>1):
             # the function related to the command start the execution, and if there is more than
             # one function related to the command, eacth of them are executed in a thread.
             if ((validCommitInputValues and (cmd == "push"))or(cmd == "pull")):
+                # check if it any sub commands bo execute them  first
                 if(len(sys.argv)==3):
                     for subCmd, action in cmd_related_actions[1].items():
                         if(sys.argv[2]==subCmd):
                             action[0]()
-
+                # Running throug the actions and execute them by threads
                 if(len(cmd_actions)>1):
                     for act in cmd_actions:
                         th_task = FunctionThreadTask(act)
