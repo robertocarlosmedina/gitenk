@@ -1,5 +1,6 @@
 import os
 import sys
+from time import sleep
 from src.taskHandler import FunctionThreadTask
 from src.action import GitAction
 
@@ -55,6 +56,7 @@ if (len(sys.argv)>1):
                     for subCmd, action in cmd_related_actions[1].items():
                         if(sys.argv[2]==subCmd):
                             action[0]()
+                            sleep(2)
 
                 if(len(cmd_actions)>1):
                     for act in cmd_actions:
