@@ -50,6 +50,7 @@ class GitAction:
         else:
             os.system(f"git commit -m '{self.commitHeader}'")
 
+        print(self.forcePush)
         if(self.forcePush):
             os.system("git push --force")
             print("ok")
