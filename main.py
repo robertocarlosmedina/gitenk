@@ -27,6 +27,7 @@ cmds_dict = {\
 validOperation = False
 validCommitInputValues = False
 secunSubCommandsUsed = False
+pushAndPullAction = False
 
 if (len(sys.argv)>1):
     for cmd, cmd_related_actions in cmds_dict.items():
@@ -54,10 +55,10 @@ if (len(sys.argv)>1):
                     for act in cmd_actions:
                         th_task = FunctionThreadTask(act)
                         th_task.start()
-
+                pushAndPullAction = True
                 validOperation = True
             
-            if(not secunSubCommandsUsed):
+            if(not secunSubCommandsUsed and not pushAndPullAction):
                 for action in cmd_actions:
                     validOperation = action()
 if(not validOperation):
