@@ -17,6 +17,7 @@ class GitAction:
         self.forcePush = True
     
     def unsetForce(self):
+        print("Unset force")
         self.forcePush = False
     
     def setUPCommitValues(self):
