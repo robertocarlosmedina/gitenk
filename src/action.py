@@ -33,7 +33,6 @@ class GitAction:
 
         if(self.commitHeader == None and self.commitMessage == None):
             return False
-
         return True
     
     def authentication(self):
@@ -51,7 +50,6 @@ class GitAction:
 
         if(self.forcePush):
             os.system("git push --force")
-            print("ok")
         else:
             os.system("git push")       
         return True

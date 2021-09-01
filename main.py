@@ -1,6 +1,4 @@
-import os
 import sys
-from time import sleep
 from src.taskHandler import FunctionThreadTask
 from src.action import GitAction
 
@@ -34,10 +32,11 @@ if (len(sys.argv)>1):
     for cmd, cmd_related_actions in cmds_dict.items():
         cmd_actions = cmd_related_actions[0]
         if(sys.argv[1]==cmd):
-            # check if it was the push sub commands passed in the sub parameter
+            # Check if it was the push sub commands passed in the sub parameter
             # to set the commit values and path to them
             if (cmd == "push"):
                 validCommitInputValues = gitAction.setUPCommitValues()
+    
             # if there is a subcommand sent this will run in the the cmdsub dict
             # that are in the commad subcommands
             if((len(sys.argv)==3)and(cmd != "push")and(cmd!="pull")):
@@ -52,7 +51,7 @@ if (len(sys.argv)>1):
             # the function related to the command start the execution, and if there is more than
             # one function related to the command, eacth of them are executed in a thread.
             if ((validCommitInputValues and (cmd == "push"))or(cmd == "pull")):
-                if(len(cmd_related_actions)==2):
+                if(len(sys.argv)==3):
                     for subCmd, action in cmd_related_actions[1].items():
                         if(sys.argv[2]==subCmd):
                             action[0]()
@@ -69,5 +68,6 @@ if (len(sys.argv)>1):
             if(not secunSubCommandsUsed and not pushAndPullAction):
                 for action in cmd_actions:
                     validOperation = action()
+
 if(not validOperation):
     print("gitenk error: command error.")
