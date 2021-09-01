@@ -10,6 +10,13 @@ class GitAction:
         self.path = None
         self.commitHeader = None
         self.commitMessage = None
+        self.forcePush = False
+    
+    def setForce(self):
+        self.forcePush = True
+    
+    def unsetForce(self):
+        self.forcePush = False
     
     def setUPCommitValues(self):
         self.path = input("File path: ")
@@ -31,6 +38,7 @@ class GitAction:
     
     def authentication(self):
         self.auth.getUseCredentials()
+        return True
 
     def push(self):        
         os.system(f"git add {self.path}")
@@ -41,7 +49,13 @@ class GitAction:
         else:
             os.system(f"git commit -m '{self.commitHeader}'")
 
-        os.system("git push")
+        if(self.forcePush):
+            os.system("git push --force")
+            print("ok")
+        else:
+            os.system("git push")
+            print("ok1")        
+        return True
 
     def pull(self):
         os.system("git pull")

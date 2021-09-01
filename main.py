@@ -7,7 +7,10 @@ gitAction = GitAction()
 # List of the possible commands for the package and their possible
 # subcommands that can be used
 cmds_dict = {\
-    "push":[[gitAction.push, gitAction.authentication]],\
+    "push":[[gitAction.unsetForce, gitAction.push, gitAction.authentication],\
+        {
+        "-force":[gitAction.setForce, gitAction.push, gitAction.authentication]
+        }],\
     "pull":[[gitAction.pull, gitAction.authentication]],\
     "show":[[gitAction.showCredentials],\
         {\
@@ -34,23 +37,23 @@ if (len(sys.argv)>1):
                 validCommitInputValues = gitAction.setUPCommitValues()
             # if there is a subcommand sent this will run in the the cmdsub dict
             # that are in the commad subcommands
-            if(len(sys.argv)==3):
+            if((len(sys.argv)==3)and(cmd != "push")and(cmd!="pull")):
                 if(len(cmd_related_actions)>1):
                     subCommands = cmd_related_actions[1]
                     for subcmd,subCommand_actions in subCommands.items():
                         if(sys.argv[2] == subcmd):
                             validOperation = subCommand_actions[0]()
-            else:
-                # if it is a valid operation and all the commit values are correctly set up
-                # the function related to the command start the execution, and if there is more than
-                # one function related to the command, eacth of them are executed in a thread.
-                if ((validCommitInputValues and (cmd == "push"))or(cmd != "push")):
-                    if(len(cmd_actions)>1):
-                        for act in cmd_actions:
-                            th_task = FunctionThreadTask(act)
-                            th_task.start()
-                    else:
-                        cmd_actions[0]()
-                    validOperation = True
+
+            # if it is a valid operation and all the commit values are correctly set up
+            # the function related to the command start the execution, and if there is more than
+            # one function related to the command, eacth of them are executed in a thread.
+            if ((validCommitInputValues and (cmd == "push"))or(cmd == "pull")):
+                if(len(cmd_actions)>1):
+                    for act in cmd_actions:
+                        th_task = FunctionThreadTask(act)
+                        th_task.start()
+                else:
+                    cmd_actions[0]()
+                validOperation = True
 if(not validOperation):
     print("gitenk error: command error.")
