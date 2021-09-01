@@ -49,11 +49,11 @@ class GitAction:
         else:
             os.system(f"git commit -m '{self.commitHeader}'")
 
-        if(self.forcePush):
-            os.system("git push --force")
-            
-        else:
-            os.system("git push")       
+        # if(self.forcePush):
+        #     os.system("git push --force")
+
+        # else:
+        os.system("git push")       
         return True
 
     def pull(self):
