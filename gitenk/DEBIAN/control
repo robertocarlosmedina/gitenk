@@ -1,6 +1,5 @@
 Package: gitenk
-Version: 0.1.0
-Maintainer: rmedina@uta.cv
+Version: 0.1.4
+Maintainer: robertocarlosmedina.dev@gmail.com
 Architecture: all
-Description: demo
-
+Description: Beta Version to be tested

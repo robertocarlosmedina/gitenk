@@ -10,7 +10,7 @@ class FunctionThreadTask(Thread):
     def __init__(self, function_sent):
         Thread.__init__(self)
         self.function_toExec = function_sent
-    
+
     def run(self):
         self.function_toExec()
 
@@ -76,7 +76,6 @@ class Auth:
             file_credentials.write(f"{token}")
             file_credentials.close()
 
-
 # Each function of this class is considerate a action to be executed 
 # by the package.
 class GitAction:
@@ -85,6 +84,13 @@ class GitAction:
         self.path = None
         self.commitHeader = None
         self.commitMessage = None
+        self.forcePush = False
+    
+    def setForce(self):
+        self.forcePush = True
+    
+    def unsetForce(self):
+        self.forcePush = False
     
     def setUPCommitValues(self):
         self.path = input("File path: ")
@@ -101,32 +107,39 @@ class GitAction:
 
         if(self.commitHeader == None and self.commitMessage == None):
             return False
-
         return True
     
     def authentication(self):
         self.auth.getUseCredentials()
+        return True
 
     def push(self):        
         os.system(f"git add {self.path}")
-        if (self.commitHeader != None and self.commitMessage != None):
+        if (self.commitHeader and self.commitMessage):
             os.system(f"git commit -m '{self.commitHeader}' -m '{self.commitMessage}'")
         elif(self.commitHeader == None):
             os.system(f"git commit -m '{self.commitMessage}'")
         else:
             os.system(f"git commit -m '{self.commitHeader}'")
 
-        os.system("git push")
+        if(self.forcePush):
+            os.system("git push --force")
+        else:
+            os.system("git push")       
+        return True
 
     def pull(self):
         os.system("git pull")
     
     def showCredentials(self):
         self.auth.showCredentials()
+        return True
 
     def getTokenCredentials(self):
         personal_token = self.auth.getSpecificCredential('token')
         print(f"Personal Token: {personal_token}")
+        input("\nClick enter to close.")
+        os.system("clear")
         return True
     
     def getUserNameCredentials(self):
@@ -163,12 +176,14 @@ class GitAction:
         return False
 
 
-
 gitAction = GitAction()
 # List of the possible commands for the package and their possible
 # subcommands that can be used
 cmds_dict = {\
-    "push":[[gitAction.push, gitAction.authentication]],\
+    "push":[[gitAction.push, gitAction.authentication],\
+        {\
+        "-force":[gitAction.setForce]\
+        }],\
     "pull":[[gitAction.pull, gitAction.authentication]],\
     "show":[[gitAction.showCredentials],\
         {\
@@ -184,35 +199,50 @@ cmds_dict = {\
     
 validOperation = False
 validCommitInputValues = False
+secunSubCommandsUsed = False
+pushAndPullAction = False
 
 if (len(sys.argv)>1):
     for cmd, cmd_related_actions in cmds_dict.items():
         cmd_actions = cmd_related_actions[0]
         if(sys.argv[1]==cmd):
-            # check if it was the push sub commands passed in the sub parameter
+            # Check if it was the push sub commands passed in the sub parameter
             # to set the commit values and path to them
             if (cmd == "push"):
                 validCommitInputValues = gitAction.setUPCommitValues()
+    
             # if there is a subcommand sent this will run in the the cmdsub dict
             # that are in the commad subcommands
-            if(len(sys.argv)==3):
+            if((len(sys.argv)==3)and(cmd != "push")and(cmd!="pull")):
                 if(len(cmd_related_actions)>1):
                     subCommands = cmd_related_actions[1]
                     for subcmd,subCommand_actions in subCommands.items():
                         if(sys.argv[2] == subcmd):
                             validOperation = subCommand_actions[0]()
-            else:
-                # if it is a valid operation and all the commit values are correctly set up
-                # the function related to the command start the execution, and if there is more than
-                # one function related to the command, eacth of them are executed in a thread.
-                if ((validCommitInputValues and (cmd == "push"))or(cmd != "push")):
-                    if(len(cmd_actions)>1):
-                        for act in cmd_actions:
-                            th_task = FunctionThreadTask(act)
-                            th_task.start()
-                    else:
-                        cmd_actions[0]()
+                            secunSubCommandsUsed = True
+
+            # if it is a valid operation and all the commit values are correctly set up
+            # the function related to the command start the execution, and if there is more than
+            # one function related to the command, eacth of them are executed in a thread.
+            if ((validCommitInputValues and (cmd == "push"))or(cmd == "pull")):
+                # check if it any sub commands bo execute them  first
+                if(len(sys.argv)==3):
+                    for subCmd, action in cmd_related_actions[1].items():
+                        if(sys.argv[2]==subCmd):
+                            action[0]()
+                # Running throug the actions and execute them by threads
+                if(len(cmd_actions)>1):
+                    for act in cmd_actions:
+                        th_task = FunctionThreadTask(act)
+                        th_task.start()
                     validOperation = True
+                else:
+                    validOperation = action[0]()
+                pushAndPullAction = True
+            
+            if(not secunSubCommandsUsed and not pushAndPullAction):
+                for action in cmd_actions:
+                    validOperation = action()
+
 if(not validOperation):
     print("gitenk error: command error.")
-    

@@ -1,6 +1,5 @@
 import os
 from time import sleep
-import getpass
 from pynput.keyboard import Key, Controller
 
 # This class has the main goal the care about all the Authentication and 

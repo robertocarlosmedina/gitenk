@@ -1,4 +1,3 @@
-import os
 from threading import Thread
 
 # This class will allow to executed threads for a multiple number of function 
