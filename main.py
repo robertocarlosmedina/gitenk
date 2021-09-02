@@ -46,6 +46,9 @@ if (len(sys.argv)>1):
                         if(sys.argv[2] == subcmd):
                             validOperation = subCommand_actions[0]()
                             secunSubCommandsUsed = True
+                            validOperation = True
+                    if(not secunSubCommandsUsed):
+                        validOperation = False
 
             # if it is a valid operation and all the commit values are correctly set up
             # the function related to the command start the execution, and if there is more than
@@ -66,7 +69,7 @@ if (len(sys.argv)>1):
                     validOperation = action[0]()
                 pushAndPullAction = True
             
-            if(not secunSubCommandsUsed and not pushAndPullAction):
+            if((len(sys.argv)<3) and not pushAndPullAction):
                 for action in cmd_actions:
                     validOperation = action()
 
