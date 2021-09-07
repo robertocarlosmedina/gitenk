@@ -187,13 +187,13 @@ cmds_dict = {\
     "pull":[[gitAction.pull, gitAction.authentication]],\
     "show":[[gitAction.showCredentials],\
         {\
-        "token":[gitAction.getTokenCredentials],\
-        "username":[gitAction.getUserNameCredentials]\
+        "-t":[gitAction.getTokenCredentials],\
+        "-u":[gitAction.getUserNameCredentials]\
         }],\
     "change":[[gitAction.changeCredentials], 
         {\
-        "token":[gitAction.tokenCredentialChange],\
-        "username":[gitAction.usernameCredentialChange]
+        "-t":[gitAction.tokenCredentialChange],\
+        "-u":[gitAction.usernameCredentialChange]
         }]
     }
     

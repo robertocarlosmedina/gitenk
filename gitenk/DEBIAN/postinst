@@ -3,6 +3,11 @@ chmod 777 /usr/bin/gitenk
 sudo echo "\nSET_UP_USERNAME\nand_USE_'gitenk change'_TO_PASTE_YOUR_CREDENTIALS_INTO_HERE" > /usr/bin/credentials.txt
 chmod 777 /usr/bin/credentials.txt
 
+sudo mkdir /usr/local/man/man1
+sudo cp gitenk.1 /usr/local/man/man1
+sudo gzip /usr/local/man/man1/gitenk.1
+sudo mandb
+
 echo "\nDependencies installation:"
 
 pip3 install pynput &
