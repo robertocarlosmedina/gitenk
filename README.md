@@ -45,16 +45,8 @@ It's a Package to control the token to allow to push and pull to a repo in Githu
 **gitenk show**
 : Display a message that contain the Github username and personal token.
 
-
-# EXIT VALUES
-**0**
-: Sucess
-
-**1**
-: Invalid option
-
 # BUGS
-I  should think so.
+If you find any issues please reporte it to me, so we can solve it.
 
 # Author
 Made by Roberto Carlos Medina. Email: robertocarlosmedina.dev@gmail.com
