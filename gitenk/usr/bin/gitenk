@@ -13,8 +13,8 @@ then
     figlet -f slant -k -c  gitenk | lolcat -a -d 1
     figlet -f term -k -c  Roberto Carlos Medina | lolcat -a -d 1
     figlet -f term -k -c  robertocarlosmedina.dev@gmail.com | lolcat
-    figlet -f circle -k -c  2021 | lolcat
-    figlet -f term -c Use 'gitenk help' to get help.
+    figlet -f term -k -c  2021 | lolcat
+    figlet -f term -c Use "gitenk help" to get help.
     echo ""
 else
     if [ -z "$2" ]

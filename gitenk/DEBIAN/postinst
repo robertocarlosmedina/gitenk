@@ -10,7 +10,8 @@ sudo mandb
 
 echo "\nDependencies installation:"
 
+@REM sudo apt install python3-pip &
 pip3 install pynput &
-pip install stdiomask &
-apt install figlet &
-apt install lolcat &
+pip3 install stdiomask & 
+sudo apt install figlet & 
+sudo apt install lolcat &

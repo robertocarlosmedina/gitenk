@@ -2,6 +2,7 @@ import sys
 from src.taskHandler import FunctionThreadTask
 from src.action import GitAction
 
+
 gitAction = GitAction()
 # List of the possible commands for the package and their possible
 # subcommands that can be used
@@ -75,3 +76,8 @@ if (len(sys.argv)>1):
 
 if(not validOperation):
     print("gitenk error: command error.")
+
+# commands to be used
+# dpkg-deb --build gitenk
+# sudo apt purge gitenk
+# sudo dpkg -i gitenk.deb

@@ -51,7 +51,6 @@ class Auth:
         elif(newToken != None):
             username = self.readCredentials()[0]
             file_credentials = open("/usr/bin/credentials.txt", "w")
-            print(newToken)
             file_credentials.write(f"{username[0:-1]}")
             file_credentials.write("\n")
             file_credentials.write(f"{newToken}")
