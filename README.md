@@ -1,5 +1,5 @@
 <h1 align="center">gitenk</h1>
-It's a Package to control the token to allow to push and pull to a repo in Github.
+<p align="center">It's a Package to control the token to allow to push and pull to a repo in Github.</p>
 
 # DESCRIPTION
 **gitenk** allow's to push and make any action to Github, and also help's keep and mantain a personal Github token. Running **gitenk** without any command line parameters (subcommands) causes **gitenk** to display its version and his front presentation.
